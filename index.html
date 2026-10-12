@@ -20,46 +20,87 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            padding: 50px 20px;
             line-height: 1.6;
         }
-        .container {
-            max-width: 800px;
-            width: 100%;
+        
+        /* CONTENEDOR PRINCIPAL A DOS COLUMNAS */
+        .layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start; /* Necesario para que funcione el sticky */
+        }
+
+        /* BARRA LATERAL ESTÁTICA (PERFIL Y CONTACTO) */
+        .profile-sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            position: sticky;
+            top: 40px; /* Distancia desde arriba al hacer scroll */
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.15);
+            box-sizing: border-box;
+        }
+        .profile-sidebar h1 {
+            color: #ffffff;
+            margin: 0 0 8px 0;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            line-height: 1.2;
+        }
+        .profile-sidebar h2 {
+            color: var(--accent-color);
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin: 0 0 25px 0;
         }
         
-        /* HEADER Y CONTACTO */
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
+        /* CAJA DE DATOS DE CONTACTO */
+        .contact-box {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
         }
-        header h1 {
+        .contact-item {
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+        .contact-item span {
+            display: block;
             color: #ffffff;
-            margin-bottom: 5px;
-            font-size: 2.5rem;
-            letter-spacing: -0.5px;
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        header h2 {
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .contact-links a {
+        .contact-item a {
             color: var(--text-muted);
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 0.95rem;
             transition: color 0.2s;
         }
-        .contact-links a:hover {
+        .contact-item a:hover {
             color: var(--accent-hover);
+        }
+        .contact-item p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+        .note {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* CONTENIDO PRINCIPAL (DERECHA) */
+        .main-content {
+            flex-grow: 1;
+            max-width: 740px;
         }
 
         /* SECCIONES DEL CV */
@@ -71,6 +112,7 @@
             font-size: 1.5rem;
             border-left: 4px solid var(--accent-color);
             padding-left: 12px;
+            margin-top: 0;
             margin-bottom: 20px;
         }
         
@@ -81,6 +123,10 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 15px;
+            transition: border-color 0.2s;
+        }
+        .cv-item:hover {
+            border-color: var(--accent-color);
         }
         .cv-item h4 {
             margin: 0 0 5px 0;
@@ -119,7 +165,7 @@
         /* PROYECTOS (TARJETAS) */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
         .card {
@@ -171,97 +217,128 @@
 
         footer {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 40px;
             color: #64748b;
             font-size: 0.85rem;
             border-top: 1px solid var(--border-color);
             padding-top: 20px;
         }
+
+        /* DISEÑO RESPONSIVO PARA CELULARES */
+        @media (max-width: 850px) {
+            .layout {
+                flex-direction: column;
+            }
+            .profile-sidebar {
+                width: 100%;
+                position: static; /* Quita el sticky en celulares para que no estorbe */
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- ENCABEZADO -->
-        <header>
+    <div class="layout">
+        
+        <!-- COLUMNA IZQUIERDA: PERFIL Y CONTACTO ESTÁTICO -->
+        <aside class="profile-sidebar">
             <h1>Brandon Isaac Miranda Montes</h1>
             <h2>Ingeniero de Sistemas de Información</h2>
-            <div class="contact-links">
-                <a href="mailto:[TU CORREO AQUÍ]">&bull; Email</a>
-                <a href="[ENLACE_A_TU_GITHUB]" target="_blank">&bull; GitHub</a>
-                <a href="[ENLACE_A_TU_LINKEDIN_O_BORRA_ESTA_LINEA]" target="_blank">&bull; LinkedIn</a>
-            </div>
-        </header>
-
-        <!-- PERFIL -->
-        <section>
-            <h3>Sobre Mí</h3>
-            <p style="color: var(--text-muted);">Estudiante de Ingeniería de Sistemas de Información enfocado en el desarrollo de software y videojuegos. Tengo experiencia práctica estructurando lógica de programación, creando interfaces y manejando bases de datos. Me gusta resolver problemas complejos y transformar ideas en sistemas interactivos funcionales.</p>
-        </section>
-
-        <!-- EXPERIENCIA Y EDUCACIÓN -->
-        <section>
-            <h3>Experiencia y Formación Académica</h3>
             
-            <div class="cv-item">
-                <h4>Universidad de Sonora (UNISON)</h4>
-                <p class="date">Estudiante Activo</p>
-                <p>Cursando la licenciatura en Ingeniería de Sistemas de Información.</p>
-            </div>
-
-            <div class="cv-item">
-                <h4>Desarrollo de Videojuegos y Entornos Interactivos</h4>
-                <p class="date">Proyectos Independientes y Académicos</p>
-                <p>Desarrollo de lógicas, mecánicas y Blueprints para el proyecto <strong>Protocol Entropy</strong> utilizando Unreal Engine y C++. Co-creador de conceptos y programación lógica para el videojuego educativo <strong>NeoPeques / Party Problems</strong>.</p>
-            </div>
-        </section>
-
-        <!-- HABILIDADES TÉCNICAS -->
-        <section>
-            <h3>Habilidades Técnicas</h3>
-            <div class="skills-container">
-                <span class="skill-tag">C# & C++</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Unity</span>
-                <span class="skill-tag">Unreal Engine</span>
-                <span class="skill-tag">MySQL & MongoDB</span>
-                <span class="skill-tag">Git / GitHub</span>
-                <span class="skill-tag">Diseño de UI (Canva/PySide)</span>
-            </div>
-        </section>
-
-        <!-- PROYECTOS DESTACADOS -->
-        <section>
-            <h3>Proyectos Destacados</h3>
-            <div class="projects-grid">
+            <div class="contact-box">
+                <div class="contact-item">
+                    <span>Email</span>
+                    <a href="mailto:tu.correo@ejemplo.com">braisaacmirandam@gmail.com</a>
+                </div>
                 
-                <!-- Proyecto 1 -->
-                <div class="card">
-                    <h4>The Bound Anthology</h4>
-                    <p>Prototipo de novela visual de terror desarrollada en Unity. Estructuración de esqueletos lógicos y flujos de juego.</p>
-                    <a href="[URL_DE_TU_REPO_UNITY]" class="btn" target="_blank">Ver Repositorio &rarr;</a>
+                <div class="contact-item">
+                    <span>Teléfono</span>
+                    <p>662 123 4567 <br><span class="note">(Ejemplo de un numero no real por temas de seguridad Hermosillo, Sonora)</span></p>
                 </div>
-
-                <!-- Proyecto 2 -->
-                <div class="card">
-                    <h4>Consola y Lógica en Python</h4>
-                    <p>Implementación de los juegos "Lights Out" y "Juego de la Vida de Conway" estructurados enteramente mediante código en terminal.</p>
-                    <a href="[URL_DE_TU_REPO_TERMINAL]" class="btn" target="_blank">Ver Repositorio &rarr;</a>
+                
+                <div class="contact-item">
+                    <span>GitHub</span>
+                    <a href="https://github.com/MrBukkTekk" target="_blank">github.com/tu-usuario</a>
                 </div>
-
-                <!-- Proyecto 3 -->
-                <div class="card">
-                    <h4>Desarrollo Orientado a Objetos (C#)</h4>
-                    <p>Soluciones en Visual Studio Community integrando interfaces gráficas (GUI), POO y conectividad a bases de datos relacionales.</p>
-                    <a href="[URL_DE_TU_REPO_VISUAL]" class="btn" target="_blank">Ver Repositorio &rarr;</a>
+                
+                <div class="contact-item">
+                    <span>LinkedIn</span>
+                    <p class="note">Aún no tengo cuenta</p>
                 </div>
-
             </div>
-        </section>
+        </aside>
 
-        <footer>
-            <p>Brandon Isaac Miranda Montes &bull; Portafolio de Desarrollo</p>
-        </footer>
+        <!-- COLUMNA DERECHA: CONTENIDO DEL CV Y PROYECTOS -->
+        <main class="main-content">
+            
+            <!-- PERFIL -->
+            <section>
+                <h3>Sobre Mí</h3>
+                <p style="color: var(--text-muted); margin-top: 0;">Estudiante de Ingeniería de Sistemas de Información enfocado en el desarrollo de software y videojuegos. Tengo experiencia práctica estructurando lógica de programación y creando interfaces. Me gusta hacer arte por medio de la logica, fundador del equipo de desarrolladores ELOA</p>
+            </section>
+
+            <!-- EXPERIENCIA Y EDUCACIÓN -->
+            <section>
+                <h3>Experiencia y Formación Académica</h3>
+                
+                <div class="cv-item">
+                    <h4>Universidad de Sonora (UNISON)</h4>
+                    <p class="date">Estudiante Activo</p>
+                    <p>Cursando actualmente la licenciatura en Ingeniería de Sistemas de Información en quinto semestre.</p>
+                </div>
+
+                <div class="cv-item">
+                    <h4>Desarrollo de Videojuegos y Entornos Interactivos</h4>
+                    <p class="date">Proyectos Independientes y Académicos</p>
+                    <p>Desarrollo de lógicas, mecánicas y Blueprints para el proyecto <strong>Protocol Entropy. Co-creador de conceptos y lógica para el videojuego educativo <strong>Party Problems, ademas de estar en el actual desarrollo de la novela visual <strong>The Bound Anthology </strong>.</p>
+                </div>
+            </section>
+
+            <!-- HABILIDADES TÉCNICAS -->
+            <section>
+                <h3>Habilidades Técnicas</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">C# & C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">Unreal Engine</span>
+                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">Diseño de UI</span>
+                </div>
+            </section>
+
+            <!-- PROYECTOS DESTACADOS -->
+            <section>
+                <h3>Proyectos Destacados</h3>
+                <div class="projects-grid">
+                    
+                    <div class="card">
+                        <h4>The Bound Anthology</h4>
+                        <p>Prototipo de novela visual de terror desarrollada en Unity. Estructuración de esqueletos lógicos y flujos de juego.</p>
+                        <a href="https://github.com/MrBukkTekk/Proyecto_Unity_Tarea02" class="btn" target="_blank">Ver Repositorio &rarr;</a>
+                    </div>
+
+                    <div class="card">
+                        <h4>Consola y Lógica en Python</h4>
+                        <p>Implementación de los juegos "Lights Out" y "Juego de la Vida de Conway" estructurados enteramente mediante código en terminal.</p>
+                        <a href="https://github.com/MrBukkTekk/Proyectos_Terminal_Tarea02" class="btn" target="_blank">Ver Repositorio &rarr;</a>
+                    </div>
+
+                    <div class="card">
+                        <h4>Desarrollo Orientado a Objetos (C#)</h4>
+                        <p>Soluciones en Visual Studio Community integrando interfaces gráficas (GUI), POO y conectividad a bases de datos relacionales.</p>
+                        <a href="https://github.com/MrBukkTekk/Proyecto_VisualStudio_Tarea02" class="btn" target="_blank">Ver Repositorio &rarr;</a>
+                    </div>
+
+                </div>
+            </section>
+
+            <footer>
+                <p>Brandon Isaac Miranda Montes &bull; Portafolio de Desarrollo</p>
+            </footer>
+
+        </main>
     </div>
 
 </body>
