@@ -24,16 +24,14 @@
             line-height: 1.6;
         }
         
-        /* CONTENEDOR PRINCIPAL A DOS COLUMNAS */
         .layout {
             max-width: 1100px;
             margin: 0 auto;
             display: flex;
             gap: 40px;
-            align-items: flex-start; /* Necesario para que funcione el sticky */
+            align-items: flex-start; 
         }
 
-        /* BARRA LATERAL ESTÁTICA (PERFIL Y CONTACTO) */
         .profile-sidebar {
             width: 320px;
             flex-shrink: 0;
@@ -42,7 +40,7 @@
             border-radius: 12px;
             padding: 30px;
             position: sticky;
-            top: 40px; /* Distancia desde arriba al hacer scroll */
+            top: 40px; 
             box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.15);
             box-sizing: border-box;
         }
@@ -58,10 +56,16 @@
             color: var(--accent-color);
             font-size: 1.05rem;
             font-weight: 500;
+            margin: 0 0 5px 0;
+        }
+        .profile-sidebar h3.aspiracion {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 400;
             margin: 0 0 25px 0;
+            font-style: italic;
         }
         
-        /* CAJA DE DATOS DE CONTACTO */
         .contact-box {
             border-top: 1px solid var(--border-color);
             padding-top: 20px;
@@ -97,17 +101,15 @@
             font-style: italic;
         }
 
-        /* CONTENIDO PRINCIPAL (DERECHA) */
         .main-content {
             flex-grow: 1;
             max-width: 740px;
         }
 
-        /* SECCIONES DEL CV */
         section {
             margin-bottom: 45px;
         }
-        section h3 {
+        section h3.section-title {
             color: #ffffff;
             font-size: 1.5rem;
             border-left: 4px solid var(--accent-color);
@@ -116,7 +118,6 @@
             margin-bottom: 20px;
         }
         
-        /* EXPERIENCIA Y EDUCACIÓN */
         .cv-item {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -141,16 +142,19 @@
             margin-bottom: 10px;
         }
         .cv-item p {
-            margin: 0;
+            margin: 0 0 8px 0;
             color: var(--text-muted);
             font-size: 0.95rem;
         }
+        .cv-item p strong {
+            color: #e2e8f0;
+        }
 
-        /* HABILIDADES */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            margin-bottom: 20px;
         }
         .skill-tag {
             background-color: rgba(168, 85, 247, 0.1);
@@ -161,8 +165,12 @@
             font-size: 0.9rem;
             font-weight: 500;
         }
+        .skill-tag.social {
+            background-color: rgba(148, 163, 184, 0.1);
+            color: #cbd5e1;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
 
-        /* PROYECTOS (TARJETAS) */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -222,16 +230,16 @@
             font-size: 0.85rem;
             border-top: 1px solid var(--border-color);
             padding-top: 20px;
+            padding-bottom: 30px;
         }
 
-        /* DISEÑO RESPONSIVO PARA CELULARES */
         @media (max-width: 850px) {
             .layout {
                 flex-direction: column;
             }
             .profile-sidebar {
                 width: 100%;
-                position: static; /* Quita el sticky en celulares para que no estorbe */
+                position: static; 
                 margin-bottom: 20px;
             }
         }
@@ -245,16 +253,18 @@
         <aside class="profile-sidebar">
             <h1>Brandon Isaac Miranda Montes</h1>
             <h2>Ingeniero de Sistemas de Información</h2>
+            <!-- Puesto al que aspiras -->
+            <h3 class="aspiracion">Aspirante a Desarrollador de Software y Game Dev</h3>
             
             <div class="contact-box">
                 <div class="contact-item">
                     <span>Email</span>
-                    <a href="mailto:tu.correo@ejemplo.com">braisaacmirandam@gmail.com</a>
+                    <a href="mailto:braisaacmirandam@gmail.com">braisaacmirandam@gmail.com</a>
                 </div>
                 
                 <div class="contact-item">
                     <span>Teléfono</span>
-                    <p>662 123 4567 <br><span class="note">(Ejemplo de un numero no real por temas de seguridad Hermosillo, Sonora)</span></p>
+                    <p>662 123 4567 <br><span class="note">(Ejemplo de un número no real por temas de seguridad Hermosillo, Sonora)</span></p>
                 </div>
                 
                 <div class="contact-item">
@@ -274,42 +284,55 @@
             
             <!-- PERFIL -->
             <section>
-                <h3>Sobre Mí</h3>
-                <p style="color: var(--text-muted); margin-top: 0;">Estudiante de Ingeniería de Sistemas de Información enfocado en el desarrollo de software y videojuegos. Tengo experiencia práctica estructurando lógica de programación y creando interfaces en Figma o Canva. Me gusta hacer arte por medio de la logica, fundador del equipo de desarrolladores ELOA</p>
+                <h3 class="section-title">Sobre Mí</h3>
+                <p style="color: var(--text-muted); margin-top: 0;"><strong>¿Quién soy?</strong> Soy un estudiante de Ingeniería de Sistemas de Información apasionado por la creación de herramientas digitales y videojuegos. Fundador del equipo de desarrolladores ELOA, disfruto hacer arte por medio de la lógica de programación.</p>
+                <p style="color: var(--text-muted);"><strong>¿Qué puedo hacer?</strong> Puedo estructurar lógicas de programación complejas, diseñar y maquetar interfaces de usuario (UI), manejar bases de datos relacionales y aplicar metodologías de desarrollo estructuradas para llevar un proyecto desde la idea hasta su ejecución.</p>
             </section>
 
             <!-- EXPERIENCIA Y EDUCACIÓN -->
             <section>
-                <h3>Experiencia y Formación Académica</h3>
+                <h3 class="section-title">Experiencia y Formación Académica</h3>
                 
                 <div class="cv-item">
                     <h4>Universidad de Sonora (UNISON)</h4>
-                    <p class="date">Estudiante Activo</p>
-                    <p>Cursando actualmente la licenciatura en Ingeniería de Sistemas de Información en quinto semestre.</p>
+                    <p class="date">Estudiante Activo (Quinto Semestre)</p>
+                    <p>Cursando actualmente la licenciatura en Ingeniería de Sistemas de Información, aplicando conocimientos teóricos en arquitecturas de software y gestión de bases de datos.</p>
                 </div>
 
                 <div class="cv-item">
                     <h4>Desarrollo de Videojuegos y Entornos Interactivos</h4>
                     <p class="date">Proyectos Independientes y Académicos</p>
-<p>Desarrollo de lógicas, mecánicas y Blueprints para el proyecto <strong>Protocol Entropy</strong>. Co-creador de conceptos y lógica para el videojuego educativo <strong>Party Problems</strong>, además de estar en el actual desarrollo de la novela visual <strong>The Bound Anthology</strong>.</p>                </div>
-            </section>
-
-            <!-- HABILIDADES TÉCNICAS -->
-            <section>
-                <h3>Habilidades Técnicas</h3>
-                <div class="skills-container">
-                    <span class="skill-tag">C#</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Unity</span>
-                    <span class="skill-tag">Git / GitHub</span>
-                    <span class="skill-tag">Diseño de UI</span>
+                    <p>Desarrollo de lógicas, mecánicas y Blueprints para el proyecto <strong>Protocol Entropy</strong>. Co-creador de conceptos y lógica para el videojuego educativo <strong>Party Problems</strong>, además de estar en el actual desarrollo de la novela visual <strong>The Bound Anthology</strong>.</p>
                 </div>
             </section>
 
-            <!-- PROYECTOS DESTACADOS -->
+            <!-- HABILIDADES TÉCNICAS Y SOCIALES -->
             <section>
-                <h3>Proyectos Destacados</h3>
+                <h3 class="section-title">Habilidades</h3>
+                
+                <p style="color: var(--text-muted); margin-bottom: 10px; font-size: 0.95rem;"><strong>Tecnológicas:</strong></p>
+                <div class="skills-container">
+                    <span class="skill-tag">C# & C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">Unreal Engine</span>
+                    <span class="skill-tag">MySQL & MongoDB</span>
+                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">Diseño de UI</span>
+                </div>
+
+                <p style="color: var(--text-muted); margin-bottom: 10px; font-size: 0.95rem;"><strong>Sociales (Soft Skills):</strong></p>
+                <div class="skills-container">
+                    <span class="skill-tag social">Liderazgo (Equipo ELOA)</span>
+                    <span class="skill-tag social">Trabajo en Equipo</span>
+                    <span class="skill-tag social">Resolución de Problemas</span>
+                    <span class="skill-tag social">Pensamiento Lógico y Analítico</span>
+                </div>
+            </section>
+
+            <!-- PROYECTOS DESTACADOS (TAREA 2) -->
+            <section>
+                <h3 class="section-title">Proyectos Destacados</h3>
                 <div class="projects-grid">
                     
                     <div class="card">
@@ -330,6 +353,29 @@
                         <a href="https://github.com/MrBukkTekk/Proyecto_VisualStudio_Tarea02" class="btn" target="_blank">Ver Repositorio &rarr;</a>
                     </div>
 
+                </div>
+            </section>
+
+            <!-- BLOGS Y CASOS DE ESTUDIO -->
+            <section>
+                <h3 class="section-title">Blogs / Casos de Estudio</h3>
+                
+                <div class="cv-item">
+                    <h4>Administración y Diseño de Base de Datos (MySQL)</h4>
+                    <p><strong>1. Descripción:</strong> Proyecto académico enfocado en la estructuración, normalización y administración de una base de datos relacional para gestionar un sistema con múltiples usuarios.</p>
+                    <p><strong>2. Requerimientos del cliente:</strong> El sistema debía manejar transacciones seguras, automatizar tareas recurrentes en el servidor y mantener un registro estricto (auditoría) de todos los movimientos y cambios de datos.</p>
+                    <p><strong>3. ¿Cómo se diseñó la solución?:</strong> Se esquematizó primero el modelo entidad-relación y se planificó la lógica del negocio para delegarla directamente al motor de la base de datos (evitando sobrecargar el código externo).</p>
+                    <p><strong>4. ¿Cómo se implementó la solución?:</strong> Utilizando MySQL, se programaron procedimientos almacenados (Stored Procedures) para las operaciones principales, Triggers para llenar automáticamente las tablas de bitácora y Vistas (Views) para facilitar la generación de reportes.</p>
+                    <p><strong>5. ¿Cuál fue el resultado?:</strong> Una base de datos eficiente, automatizada y altamente segura que mantiene la integridad de la información sin importar desde dónde se conecte el programa cliente.</p>
+                </div>
+
+                <div class="cv-item">
+                    <h4>Gestión de Calidad: Caso B (Sistema de Gestión Académica)</h4>
+                    <p><strong>1. Descripción:</strong> Documentación y aplicación del "Modelo V" para el desarrollo estructurado y validación de un sistema integral de gestión escolar.</p>
+                    <p><strong>2. Requerimientos del cliente:</strong> Asegurar que el software final esté libre de errores críticos y garantizar que el sistema cumpla con todos los estándares requeridos antes de su despliegue en la institución.</p>
+                    <p><strong>3. ¿Cómo se diseñó la solución?:</strong> Asumiendo el rol de "Persona 3" (Pruebas y Prevención de Riesgos), se trazó una estrategia donde cada fase de diseño del lado izquierdo de la "V" tuviera su respectiva contramedida de validación del lado derecho.</p>
+                    <p><strong>4. ¿Cómo se implementó la solución?:</strong> Se elaboró una planeación detallada estructurando casos de prueba específicos (unitarias, de integración y de aceptación) y se documentó un plan de contingencia para posibles riesgos técnicos del sistema.</p>
+                    <p><strong>5. ¿Cuál fue el resultado?:</strong> Un marco de aseguramiento de calidad (QA) robusto que previene fallos técnicos, reduciendo costos de mantenimiento y garantizando la estabilidad del sistema académico.</p>
                 </div>
             </section>
 
